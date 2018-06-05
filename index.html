@@ -17,20 +17,20 @@
         return 'u' + _uuid++
       }
       function _getCode (png, callback) {
-        var source = png
-        var img = document.createElement('img');
+        let source = png
+        let img = document.createElement('img')
         img.onload = () => {
           var canvas = document.createElement('canvas')
           canvas.width = img.width
           canvas.height = img.height
 
-          var context = canvas.getContext("2d")
+          let context = canvas.getContext("2d")
           context.drawImage(img, 0, 0)
-          var imageData = context.getImageData(0, 0, canvas.width, canvas.height),
+          let imageData = context.getImageData(0, 0, canvas.width, canvas.height),
               pixels = imageData.data
 
-          var buffer = []
-          for (var i = 0, l = pixels.length; i < l; i++) {
+          let buffer = []
+          for (let i = 0, l = pixels.length; i < l; i++) {
               if (i % 4 == 3) continue
               if (!pixels[i]) break
               buffer.push(String.fromCharCode(pixels[i]))
