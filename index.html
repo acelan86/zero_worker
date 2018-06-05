@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> </title>
+</head>
+<body>
+  <input class="output">
+  <input class="decode" type="button" value="解码">
+  <script>
+    let lib = (() => {
+      let _isReady = false
+      let _cache = []
+      let _callbacks = {}
+      let _uuid = 0
+      function _gen () {
+        return 'u' + _uuid++
+      }
+      function _getCode (png, callback) {
+        var source = png
+        var img = document.createElement('img');
+        img.onload = () => {
+          var canvas = document.createElement('canvas')
+          canvas.width = img.width
+          canvas.height = img.height
+
+          var context = canvas.getContext("2d")
+          context.drawImage(img, 0, 0)
+          var imageData = context.getImageData(0, 0, canvas.width, canvas.height),
+              pixels = imageData.data
+
+          var buffer = []
+          for (var i = 0, l = pixels.length; i < l; i++) {
+              if (i % 4 == 3) continue
+              if (!pixels[i]) break
+              buffer.push(String.fromCharCode(pixels[i]))
+          }
+          callback(buffer.join(''))
+          img = null
+        }
+        img.src = png
+      }
+      function _do (action, data, callback) {
+        let sid = _gen()
+        _callbacks[sid] = callback
+        if (!_isReady) {
+          _cache.push([sid, data, action])
+        } else {
+          worker.postMessage({
+            sid: sid,
+            type: action,
+            data: data
+          })
+        }
+      }
+
+      var worker = new Worker('worker.js')
+      worker.addEventListener('message', function (e) {
+        switch (e.data.type) {
+          case 'init':
+            _getCode(e.data.data, (code) => {
+              worker.postMessage({
+                type: 'inject',
+                data: code
+              })
+            })
+            break
+          case 'ready':
+            _isReady = true
+            while (action = _cache.pop()) {
+              worker.postMessage({
+                sid: action[0],
+                type: action[2],
+                data: action[1]
+              })
+              delete _cache
+            }
+            break
+          case 'encode':
+          case 'decode':
+            _callbacks[e.data.sid] && _callbacks[e.data.sid](e.data.data)
+            delete _callbacks[e.data.sid]
+            break
+          default: break
+        }
+      })
+
+      return {
+        encode (str, callback) {
+          _do('encode', str, callback)
+        },
+        decode (str, callback) {
+          _do('decode', str, callback)
+        }
+      }
+    })()
+
+    lib.encode('acelan', (data) => {
+      document.querySelector('.output').value = 'abc' + data
+    })
+
+    document.querySelector('.decode').onclick = () => {
+      lib.decode(document.querySelector('.output').value, (data) => {
+        alert(data)
+      })
+    }
+  </script>
+</body>
+</html>

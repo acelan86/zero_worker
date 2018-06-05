@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<textarea id="base64"></textarea>
+<script>
+function encodeUTF8(str) {
+    return String(str).replace(
+        /[\u0080-\u07ff]/g,
+        function(c) {
+            var cc = c.charCodeAt(0);
+            return String.fromCharCode(0xc0 | cc >> 6, 0x80 | cc & 0x3f);
+        }
+    ).replace(
+        /[\u0800-\uffff]/g,
+        function(c) {
+            var cc = c.charCodeAt(0);
+            return String.fromCharCode(0xe0 | cc >> 12, 0x80 | cc >> 6 & 0x3f, 0x80 | cc & 0x3f);
+        }
+    );
+}
+
+function request(url, loaded) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4)
+            if (xmlhttp.status == 200)
+                loaded(xmlhttp);
+    }
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+
+void function(){
+    var source = 'zero.js';
+    request(source, function(xmlhttp){
+        var text = encodeUTF8(xmlhttp.responseText);
+        var pixel = Math.ceil((text.length + 2) / 3); // 1一个像素存3个字节,
+        var size = Math.ceil(Math.sqrt(pixel));
+        //console.log([text.length, pixel, size, size * size * 3]);
+        var canvas = document.createElement('canvas');
+        canvas.width = canvas.height = size;
+        var context = canvas.getContext("2d"),
+            imageData = context.getImageData(0, 0, canvas.width, canvas.height),
+            pixels = imageData.data;
+        for(var i = 0, j = 0, l = pixels.length; i < l; i++){
+            if (i % 4 == 3) { // alpha会影响png还原
+                pixels[i] = 255;
+                continue;
+            }
+            var code = text.charCodeAt(j++);
+            if (isNaN(code)) break;
+            pixels[i] = code;
+        }
+        context.putImageData(imageData, 0, 0);
+        document.getElementById('base64').value = canvas.toDataURL("image/png");
+        var img = new Image()
+        img.src = canvas.toDataURL("image/png")
+        document.body.appendChild(img)
+    });
+}();
+</script>
+</body>
+</html>

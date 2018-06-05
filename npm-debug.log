@@ -1,0 +1,101 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'i',
+1 verbose cli   '-g',
+1 verbose cli   'https://github.com/acelan86/rollup-init.git' ]
+2 info using npm@3.10.9
+3 info using node@v6.9.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData https://github.com/acelan86/rollup-init.git
+8 silly fetchOtherPackageData https://github.com/acelan86/rollup-init.git
+9 silly cache add args [ 'https://github.com/acelan86/rollup-init.git', null ]
+10 verbose cache add spec https://github.com/acelan86/rollup-init.git
+11 silly cache add parsed spec Result {
+11 silly cache add   raw: 'https://github.com/acelan86/rollup-init.git',
+11 silly cache add   scope: null,
+11 silly cache add   escapedName: null,
+11 silly cache add   name: null,
+11 silly cache add   rawSpec: 'https://github.com/acelan86/rollup-init.git',
+11 silly cache add   spec: 'git+https://github.com/acelan86/rollup-init.git',
+11 silly cache add   type: 'hosted',
+11 silly cache add   hosted:
+11 silly cache add    { type: 'github',
+11 silly cache add      ssh: 'git@github.com:acelan86/rollup-init.git',
+11 silly cache add      sshUrl: 'git+ssh://git@github.com/acelan86/rollup-init.git',
+11 silly cache add      httpsUrl: 'git+https://github.com/acelan86/rollup-init.git',
+11 silly cache add      gitUrl: 'git://github.com/acelan86/rollup-init.git',
+11 silly cache add      shortcut: 'github:acelan86/rollup-init',
+11 silly cache add      directUrl: 'https://raw.githubusercontent.com/acelan86/rollup-init/master/package.json' } }
+12 verbose addRemoteGit caching https://github.com/acelan86/rollup-init.git
+13 verbose addRemoteGit git+https://github.com/acelan86/rollup-init.git is a repository hosted by github
+14 silly tryClone cloning git+https://github.com/acelan86/rollup-init.git via git+https://github.com/acelan86/rollup-init.git
+15 verbose tryClone git-https-github-com-acelan86-rollup-init-git-744836fc not in flight; caching
+16 verbose correctMkdir /Users/acelan/.npm/_git-remotes correctMkdir not in flight; initializing
+17 info git [ 'config', '--get', 'remote.origin.url' ]
+18 warn addRemoteGit git+https://github.com/acelan86/rollup-init.git resetting remote /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc because of error: xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
+19 info resetRemote resetting /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc for git+https://github.com/acelan86/rollup-init.git
+20 silly gentlyRm /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc is being purged
+21 verbose gentlyRm don't care about contents; nuking /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc
+22 silly vacuum-fs purging /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc
+23 silly vacuum-fs quitting because other entries in /Users/acelan/.npm/_git-remotes
+24 info git [ 'clone',
+24 info git   '--template=/Users/acelan/.npm/_git-remotes/_templates',
+24 info git   '--mirror',
+24 info git   'https://github.com/acelan86/rollup-init.git',
+24 info git   '/Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc' ]
+25 error git clone --template=/Users/acelan/.npm/_git-remotes/_templates --mirror https://github.com/acelan86/rollup-init.git /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc: xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
+26 silly fetchPackageMetaData Error: Command failed: git clone --template=/Users/acelan/.npm/_git-remotes/_templates --mirror https://github.com/acelan86/rollup-init.git /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc
+26 silly fetchPackageMetaData xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
+26 silly fetchPackageMetaData
+26 silly fetchPackageMetaData     at ChildProcess.exithandler (child_process.js:206:12)
+26 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+26 silly fetchPackageMetaData     at ChildProcess.emit (events.js:191:7)
+26 silly fetchPackageMetaData     at maybeClose (internal/child_process.js:877:16)
+26 silly fetchPackageMetaData     at Socket.<anonymous> (internal/child_process.js:334:11)
+26 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+26 silly fetchPackageMetaData     at Socket.emit (events.js:188:7)
+26 silly fetchPackageMetaData     at Pipe._handle.close [as _onclose] (net.js:498:12)
+26 silly fetchPackageMetaData  error for https://github.com/acelan86/rollup-init.git { Error: Command failed: git clone --template=/Users/acelan/.npm/_git-remotes/_templates --mirror https://github.com/acelan86/rollup-init.git /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc
+26 silly fetchPackageMetaData xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
+26 silly fetchPackageMetaData
+26 silly fetchPackageMetaData     at ChildProcess.exithandler (child_process.js:206:12)
+26 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+26 silly fetchPackageMetaData     at ChildProcess.emit (events.js:191:7)
+26 silly fetchPackageMetaData     at maybeClose (internal/child_process.js:877:16)
+26 silly fetchPackageMetaData     at Socket.<anonymous> (internal/child_process.js:334:11)
+26 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+26 silly fetchPackageMetaData     at Socket.emit (events.js:188:7)
+26 silly fetchPackageMetaData     at Pipe._handle.close [as _onclose] (net.js:498:12)
+26 silly fetchPackageMetaData   killed: false,
+26 silly fetchPackageMetaData   code: 1,
+26 silly fetchPackageMetaData   signal: null,
+26 silly fetchPackageMetaData   cmd: 'git clone --template=/Users/acelan/.npm/_git-remotes/_templates --mirror https://github.com/acelan86/rollup-init.git /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc' }
+27 silly rollbackFailedOptional Starting
+28 silly rollbackFailedOptional Finishing
+29 silly runTopLevelLifecycles Finishing
+30 silly install printInstalled
+31 verbose stack Error: Command failed: git clone --template=/Users/acelan/.npm/_git-remotes/_templates --mirror https://github.com/acelan86/rollup-init.git /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc
+31 verbose stack xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
+31 verbose stack
+31 verbose stack     at ChildProcess.exithandler (child_process.js:206:12)
+31 verbose stack     at emitTwo (events.js:106:13)
+31 verbose stack     at ChildProcess.emit (events.js:191:7)
+31 verbose stack     at maybeClose (internal/child_process.js:877:16)
+31 verbose stack     at Socket.<anonymous> (internal/child_process.js:334:11)
+31 verbose stack     at emitOne (events.js:96:13)
+31 verbose stack     at Socket.emit (events.js:188:7)
+31 verbose stack     at Pipe._handle.close [as _onclose] (net.js:498:12)
+32 verbose cwd /Users/acelan/zero
+33 error Darwin 16.1.0
+34 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "i" "-g" "https://github.com/acelan86/rollup-init.git"
+35 error node v6.9.1
+36 error npm  v3.10.9
+37 error code 1
+38 error Command failed: git clone --template=/Users/acelan/.npm/_git-remotes/_templates --mirror https://github.com/acelan86/rollup-init.git /Users/acelan/.npm/_git-remotes/git-https-github-com-acelan86-rollup-init-git-744836fc
+38 error xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
+39 error If you need help, you may report this error at:
+39 error     <https://github.com/npm/npm/issues>
+40 verbose exit [ 1, true ]
